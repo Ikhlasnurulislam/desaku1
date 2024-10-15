@@ -1,29 +1,21 @@
 const sekolahGroup = L.layerGroup();
 const masjidGroup = L.layerGroup();
 const tokoGroup = L.layerGroup();
-const puskesmasGroup = L.layerGroup();
-const pasarGroup = L.layerGroup();
 
 const iconSekolah = L.icon({
-  iconUrl: "asset/leaflet/images/school.png",
+  iconUrl: "asset/leaflet/images/sekolah.png",
   iconSize: [50, 50], // size of the icon
   iconAnchor: [22, 54], // point of the icon which will correspond to marker's location
   popupAnchor: [-3, -26], // point from which the popup should open relative to the iconAnchor
 });
 const iconmasjid = L.icon({
-  iconUrl: "asset/leaflet/images/mosquee.png",
+  iconUrl: "asset/leaflet/images/masjid.png",
   iconSize: [50, 50], // size of the icon
   iconAnchor: [22, 54], // point of the icon which will correspond to marker's location
   popupAnchor: [-3, -26], // point from which the popup should open relative to the iconAnchor
 });
 const iconToko = L.icon({
-  iconUrl: "asset/leaflet/images/grocery.png",
-  iconSize: [50, 50], // size of the icon
-  iconAnchor: [22, 54], // point of the icon which will correspond to marker's location
-  popupAnchor: [-3, -26], // point from which the popup should open relative to the iconAnchor
-});
-const iconpuskesmas = L.icon({
-  iconUrl: "asset/leaflet/images/hospital-building.png",
+  iconUrl: "asset/leaflet/images/kios.png",
   iconSize: [50, 50], // size of the icon
   iconAnchor: [22, 54], // point of the icon which will correspond to marker's location
   popupAnchor: [-3, -26], // point from which the popup should open relative to the iconAnchor
@@ -31,13 +23,45 @@ const iconpuskesmas = L.icon({
 
 // ===================== Marker ===========================
 var masjid = [
-  L.marker([-8.6378843, 116.0661311], { icon: iconmasjid })
+  L.marker([-8.73241497481764, 116.5263540433374], { icon: iconmasjid })
     .addTo(masjidGroup)
-    .bindPopup(` <img src="asset/leaflet/images/masjid_langko.jpg">`),
+    .bindPopup(` <img src="asset/leaflet/images/masjid_btl.jpeg">`),
+  L.marker([-8.739428862519288, 116.52357631479985], { icon: iconmasjid })
+    .addTo(masjidGroup)
+    .bindPopup(` <img src="asset/leaflet/images/masjid_lendang.jpg">`),
+  L.marker([-8.730582556258636, 116.51671560760974], { icon: iconmasjid })
+    .addTo(masjidGroup)
+    .bindPopup(` <img src="asset/leaflet/images/masjid_bagek.jpg">`),
+  L.marker([-8.730389183427947, 116.52060985441477], { icon: iconmasjid })
+    .addTo(masjidGroup)
+    .bindPopup(` <img src="asset/leaflet/images/masjid_menceh.jpg">`),
 
   // Tambahkan Kornat jika lebih dari 1
 ];
-
+var sekolah = [
+  L.marker([-8.748713915926, 116.54388382911726], { icon: iconSekolah })
+    .addTo(sekolahGroup)
+    .bindPopup(` <img src="asset/leaflet/images/sd_2menceh.jpg">`),
+  L.marker([-8.732134889406375, 116.52676930603165], { icon: iconSekolah })
+    .addTo(sekolahGroup)
+    .bindPopup(` <img src="asset/leaflet/images/paud_btl.jpeg">`),
+  L.marker([-8.730850564831723, 116.51718431676184], { icon: iconSekolah })
+    .addTo(sekolahGroup)
+    .bindPopup(` <img src="asset/leaflet/images/sd_menceh.jpg">`),
+  L.marker([-8.730736455039784, 116.51799877659693], { icon: iconSekolah })
+    .addTo(sekolahGroup)
+    .bindPopup(` <img src="asset/leaflet/images/nw_menceh.jpeg">`),
+  // Tambahkan Kornat jika lebih dari 1
+];
+var toko = [
+  L.marker([-8.733277755268098, 116.52534600380635], { icon: iconToko })
+    .addTo(tokoGroup)
+    .bindPopup(` <img src="asset/leaflet/images/kios_tani.jpg">`),
+  L.marker([-8.736023344918678, 116.53456755414689], { icon: iconToko })
+    .addTo(tokoGroup)
+    .bindPopup(` <img src="asset/leaflet/images/kios_datuk.jpg">`),
+  // Tambahkan Kornat jika lebih dari 1
+];
 
 var streets = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   id: "mapbox.streets",
@@ -56,7 +80,7 @@ var satelit = L.tileLayer(
 const map = L.map("map", {
   center: [-8.634173884984019, 116.24921668372933],
   zoom: 13,
-  layers: [satelit, sekolahGroup, masjidGroup, tokoGroup, puskesmasGroup],
+  layers: [satelit, sekolahGroup, masjidGroup, tokoGroup],
 });
 
 const baseLayers = {
@@ -68,7 +92,6 @@ const overlays = {
   Sekolah: sekolahGroup,
   Masjid: masjidGroup,
   Toko: tokoGroup,
-  puskesmas: puskesmasGroup,
 };
 
 const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
